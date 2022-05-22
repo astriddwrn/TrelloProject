@@ -39,7 +39,6 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
                 <div class="list">
                     <div class="header-wrap">
                         <div class="name">${member[0].fullName}</div>
-                        <div class="point">8</div>
                     </div>
                     <div class="">${item.name}</div>
                 </div>
@@ -77,18 +76,27 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
         //backlogs
         backlogs_raw.forEach((item, index) =>{
             let card = all_cards_res.filter(x => x.id == item.data.card.id);
-            // console.log('82', card);
             let member = members_res.filter(x => x.id == card[0].idMembers[0] );
-            // console.log('83',member);
+            let status;
+            if(card[0].idList == lists_res[0].id){
+                status = "no-progress";
+            }
+            else if(card[0].idList == lists_res[1].id){
+                status = "on-progress";
+            }
+            else{
+                status = "done";
+            }
             backlogs.push({
                 name: card[0].name,
                 member: member[0].fullName,
-                idList: card[0].idList
+                idList: card[0].idList,
+                status: status
             });
         });
         let backlogs_div = "";
         backlogs.forEach((item, index) =>{
-            let temp = `<div class="list">
+            let temp = `<div class="list ${item.status}">
             <div class="name">${item.member}</div>
             <div class="">${item.name}</div>
             </div>`;
@@ -101,9 +109,11 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
             let member = members_res.filter(x => x.id == item.idMemberCreator);
             // console.log('102',member);
             let temp = `<div class="list">
-                <div class="name">${member[0].fullName}</div>
+                <div class="flex-history">
+                    <div class="name">${member[0].fullName}</div>
+                    <div class="date">${new Date(item.date).toLocaleDateString("en-US")}</div> 
+                </div>
                 <div class="">${item.type}</div>
-                <div class="date">${new Date(item.date).toLocaleDateString("en-US")}</div>
             </div>`;
             history_div +=temp
         });
@@ -131,10 +141,12 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
             // console.log(percent);
             let temp = `
                 <div class="list member">
-                    <div class="sub-title">${item.fullName} Progress</div>
+                    <div class="sub-title name">${item.fullName} Progress</div>
                     <div class="bar">
-                        <div style="width: ${percent}%" class="colored-bar"></div>
-                    </div>
+                    <div style="width: ${backlogs_noprogress.length/backlogs_total.length*100}%" class="no-progress-bar"></div>
+                    <div style="width: ${backlogs_onprogress.length/backlogs_total.length*100}%" class="on-progress-bar"></div>
+                    <div style="width: ${backlogs_done.length/backlogs_total.length*100}%" class="done-bar"></div>
+                </div>
                 </div>`;
             performance_div +=temp;
         })
@@ -142,7 +154,7 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
         $('.main-start-scrum').after(`
             <div class="main-scrum">
                 <div class="scrum">
-                    <div class="title-section">Scrum #${idx}</div>
+                    <div class="title-section title-scrum">Scrum #${idx}</div>
                     <div class="scrum-wrapper">
                         <div class="dates">
                             <div class="flex">

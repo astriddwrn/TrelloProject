@@ -11,17 +11,25 @@ body{
 }
 
 .title-section{
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight: bold;
     margin-top: 1rem;
 }
 .title-section.title{
     text-align:center;
+    font-size: 2rem;
+}
+.title-section.title-scrum{
+    font-size: 2rem;
 }
 hr{
     margin: 2rem 0;
     height: 3px;
     background-color: black;
+}
+.list .name, .list .date{
+    font-size: 0.8rem;
+    margin: 3px 0;
 }
 
 .main-scrum.done .input-dates{
@@ -59,6 +67,16 @@ hr{
 .scrum{
     width:100%;
 }
+.history-wrap .no-progress, .no-progress .list, .no-progress-bar{
+    background-color: rgb(230, 126, 126) !important;
+}
+.history-wrap .on-progress, .on-progress .list, .on-progress-bar{
+    background-color: rgb(126, 162, 230) !important;
+}
+.history-wrap .done, .done .list, .done-bar{
+    background-color: rgb(143, 230, 126) !important;
+}
+
 .scrum-wrapper{
     display:flex;
     width: 500px;
@@ -76,11 +94,8 @@ hr{
     border-radius: 7px;
     color: white;
 }
-.end-scrum{
-    background-color: rgb(223, 143, 143);
-}
 .new-scrum{
-    background-color: rgb(150, 223, 143);
+    background-color: rgba(0, 0, 0, 0.813);
     width: fit-content;
     cursor: pointer;
 }
@@ -108,11 +123,11 @@ hr{
     border-radius:1rem;
     position: relative;
     overflow: hidden;
+    display:flex;
 }
-.analytics .colored-bar{
+.analytics .bar div{
     left: 0;
     height: 1rem;
-    background-color:black;
     width:0;
 }
 
@@ -126,5 +141,10 @@ hr{
     background-color:gainsboro;
     margin-top: 1rem;
     padding: 1rem;
+}
+.flex-history{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
 }
 
