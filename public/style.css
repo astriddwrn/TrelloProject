@@ -59,17 +59,17 @@ hr{
 .scrum{
     width:100%;
 }
-.scrum .scrum-wrapper{
+.scrum-wrapper{
     display:flex;
     width: 500px;
     justify-content: space-between;
     align-items: center;
 }
-.scrum .flex{
+.dates .flex{
     display:flex;
     gap: 2rem;
 }
-.end-scrum, .start-scrum{
+.end-scrum, .new-scrum{
     padding: 10px 20px;
     font-weight: bold;
     text-align: center;
@@ -79,8 +79,10 @@ hr{
 .end-scrum{
     background-color: rgb(223, 143, 143);
 }
-.start-scrum{
+.new-scrum{
     background-color: rgb(150, 223, 143);
+    width: fit-content;
+    cursor: pointer;
 }
 
 .history-analytics{
@@ -90,7 +92,7 @@ hr{
 }
 
 .analytics{
-    width: 600px;
+    width: 25vw;
 }
 .analytics .list{
     border-radius: 10px;
@@ -111,12 +113,13 @@ hr{
     left: 0;
     height: 1rem;
     background-color:black;
-    width:80%;
+    width:0;
 }
 
-.history-wrap{
-    width: 600px;
-
+.history-wrap, .performance-wrap{
+    width: 25vw;
+    max-height: 450px;
+    overflow-y: scroll;
 }
 .history-wrap .list{
     border-radius: 10px;
