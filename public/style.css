@@ -130,6 +130,9 @@ hr{
     height: 1rem;
     width:0;
 }
+.analytics .colored-bar{
+    background-color: black;
+}
 
 .history-wrap, .performance-wrap{
     width: 25vw;
