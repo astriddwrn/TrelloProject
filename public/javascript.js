@@ -154,7 +154,7 @@ window.hookFirebase =  async ({firebaseConfig, app, db, firestore}) => {
         $('.main-start-scrum').after(`
             <div class="main-scrum">
                 <div class="scrum">
-                    <div class="title-section title-scrum">Scrum #${idx}</div>
+                    <div class="title-section title-scrum">Sprint #${idx}</div>
                     <div class="scrum-wrapper">
                         <div class="dates">
                             <div class="flex">
